@@ -1,0 +1,3 @@
+rootProject.name = 'sortRN'
+
+include ':app'
