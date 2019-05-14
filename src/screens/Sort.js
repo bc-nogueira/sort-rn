@@ -4,8 +4,10 @@ import {
   ScrollView,
   StyleSheet,
   Text,
+  ToastAndroid,
   View
 } from 'react-native';
+import moment from 'moment';
 
 export default class Sort extends Component {
   constructor(props) {
@@ -25,12 +27,16 @@ export default class Sort extends Component {
   }
 
   prepararArray = () => {
-    return Array.from({length: this.state.tamanho}, () => 
+    const inicioTimer = moment().valueOf();
+    array = Array.from({length: this.state.tamanho}, () => 
       Math.floor(Math.random() * this.state.numeroMax)
     );
+    ToastAndroid.show((moment().valueOf() - inicioTimer) + 'ms', ToastAndroid.SHORT);
+    return array;
   }
 
   ordenar = () => {
+    const inicioTimer = moment().valueOf();
     let items = this.state.array;
 
     for (let i = 0; i < this.state.tamanho; i++) { //Number of passes
@@ -44,7 +50,7 @@ export default class Sort extends Component {
         }
       }
     }
-
+    ToastAndroid.show((moment().valueOf() - inicioTimer) + 'ms', ToastAndroid.SHORT);
     this.setState({
       array: items,
       sorted: true
